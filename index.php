@@ -23,6 +23,9 @@ try {
 }
 
 ?>
+<?php if($_SESSION['is_active'] == 1) : ?>
+	<?php if($_SESSION['role'] == 'admin') : ?>
+
 <!-- main content start-->
 <div id="page-wrapper">
 	<div class="main-page">
@@ -34,7 +37,7 @@ try {
 						<h5 id="amount_deposited">
 							<strong><?php echo $count; ?> </strong>
 						</h5>
-						<span>Employees Registered</span>
+						<span>Clients Registered</span>
 					</div>
 				</div>
 			</div>
@@ -110,4 +113,60 @@ try {
 		</div>
 	</div>
 </div>
+
+<?php else: ?>
+	<div id="page-wrapper">
+	<div class="main-page">
+		<div class="col_6">
+			<div class="col-md-6 widget widget1">
+				<div class="r3_counter_box">
+					<i class="pull-left fa fa-globe user2 icon-rounded"></i>
+					<div class="stats">
+						<h5 id="generated_revenue">
+							<strong>10</strong>
+						</h5>
+						<span>Provinces</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="clearfix"> </div>
+		</div>
+
+		<div class="row-one widgettable">
+			<div class="col-md-12 content-top-2 card">
+				<div class="agileinfo-cdr">
+					<div class="card-header">
+						<h3>News</h3>
+					</div>
+					<br><br><br>
+					
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+</div>
+<?php endif ?>
+
+<?php else: ?>
+
+<div class="">
+		<div id="page-wrapper">
+			<div class="main-page login-page">
+				<h2 class="title1" style="color:red">Account Disabled!</h2>
+				<div class="widget-shadow">
+					<div class="login-body">
+						<form action="" method="POST">
+							<div class="registration">
+								Contact Admin
+							</div>
+						</form>
+					</div>
+				</div>				
+			</div>
+		</div>
+	</div>	
+
+<?php endif; ?>
 <?php include "includes/footer.php"; ?>

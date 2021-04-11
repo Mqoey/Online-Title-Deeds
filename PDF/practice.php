@@ -20,18 +20,18 @@ class PDF extends FPDF
 	// Page header
 	function Header()
 	{
-		$image_file='../images/zanu.jpg';
+		$image_file='../images/logo.jpeg';
 		$this->Image($image_file,20,10,40,27);
 		
 		// Set font
 		$this->SetFont('Arial', 'B', 14);
 		// Title
 		$this->SetX(85);
-		$this->Cell(100, 5, "ZANU PF DOCUMENTS", 0, 0, 'C');
+		$this->Cell(100, 5, "ONLINE TITLE DEEDS", 0, 0, 'C');
 		$this->Ln(5);
 		$this->SetX(85);
 		$this->SetFont('Times', 'B', 12);
-		$this->Cell(100, 10, "Member Info For Zanu PF ", 0, 0, 'C');
+		$this->Cell(100, 10, "Info for Title Deeds ", 0, 0, 'C');
 		$this->ln(30);
 	}
 

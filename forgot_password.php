@@ -68,11 +68,11 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 					<div class="login-body">
 						<form action="send_email.php" method="POST">
 							<input type="email" class="user" name="email" placeholder="Enter Your Email" required="">
-							<input type="submit" name="submit" value="Sumit Password">
+							<input type="submit" name="submit" value="Submit Password">
 							<div class="registration">
 								Don't have an account ?
 								<a class="" href="signup.php">
-									Create an account
+									Request account
 								</a>
 							</div>
 						</form>

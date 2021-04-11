@@ -65,15 +65,12 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 <div class="">
 		<div id="page-wrapper">
 			<div class="main-page login-page ">
-				<h2 class="title1">Sign up</h2>
+				<h2 class="title1">Request Registration</h2>
 				<div class="widget-shadow">
 					<div class="login-body">
 						<form action="" method="POST">
 							<input type="email" class="user" name="email" placeholder="Enter Your Email" required="">
-							<input type="password" name="password" class="lock" placeholder="Password" required="">
-							<input type="password" name="password" class="lock" placeholder="Password" required="">
-							<input type="password" name="password" class="lock" placeholder="Password" required="">
-							<input type="submit" name="submit" value="Sign up">
+							<input type="submit" name="submit" value="Request Registration">
 							<div class="registration">
 								Have an account ?
 								<a class="" href="login.php">

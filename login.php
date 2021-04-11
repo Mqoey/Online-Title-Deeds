@@ -69,11 +69,11 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 				<div class="widget-shadow">
 					<div class="login-body">
 						<form action="" method="POST">
-							<input type="email" class="user" name="email" placeholder="Enter Your Email" required="">
+							<input type="email" class="user" name="email" placeholder="Email" required="">
 							<input type="password" name="password" class="lock" placeholder="Password" required="">
 							<div class="forgot-grid">
 								<div class="">
-									<center><a href="forgot_password.php">forgot password?</a></center>
+									<center><a href="forgot_password.php">Forgot password?</a></center>
 								</div>
 								<div class="clearfix"> </div>
 							</div>
@@ -81,7 +81,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 							<div class="registration">
 								Don't have an account ?
 								<a class="" href="signup.php">
-									Create an account
+									Request account
 								</a>
 							</div>
 						</form>
@@ -91,6 +91,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 		</div>
 		<!--footer-->
 		<div class="footer">
+		
 		   <p>&copy; 2021 All Rights Reserved | Design by XDevelopers</a></p>
 		</div>
         <!--//footer-->

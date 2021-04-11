@@ -8,12 +8,13 @@ if (!isset($_SESSION['id'])) {
 <html>
 
 <head>
-	<title>Online Deeds | Home</title>
+	<title>Online Deeds| Home</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="keywords" content="" />
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-	<link href="img/logo.png" rel="icon">
+	<link rel="icon" type="image/x-icon" href="./images/favicon.ico"/>
+	<!-- <link href="img/logo.png" rel="icon"> -->
 	<!-- Bootstrap Core CSS -->
 	<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 
@@ -80,6 +81,8 @@ if (!isset($_SESSION['id'])) {
 			<!--left-fixed -navigation-->
 			<aside class="sidebar-left">
 				<nav class="navbar navbar-inverse">
+
+				<?php if($_SESSION['is_active'] == 1) : ?>
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".collapse" aria-expanded="false">
 							<span class="sr-only">Toggle navigation</span>
@@ -87,12 +90,15 @@ if (!isset($_SESSION['id'])) {
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
+						
 						<h1>
 							<a class="navbar-brand" href="index.php">
-								<span class="fa fa-area-chart"></span> Online Deeds
+								<img style="align:center" width="20dp" length="20dp" src="./images/favicon.ico"/> Online Deeds
 							</a>
 						</h1>
 					</div>
+
+					
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="sidebar-menu">
 							<li class="header">MAIN NAVIGATION</li>
@@ -142,11 +148,12 @@ if (!isset($_SESSION['id'])) {
 								<li class="treeview">
 									<a href="#">
 										<i class="fa fa-users"></i>
-										<span>Employees</span>
+										<span>Clients</span>
 										<i class="fa fa-angle-left pull-right"></i>
 									</a>
 									<ul class="treeview-menu">
 										<li>
+											<a href="requests.php"><i class="fa fa-angle-right"></i> Requests </a>
 											<a href="new_emp.php"><i class="fa fa-angle-right"></i> New </a>
 											<a href="emp.php"><i class="fa fa-angle-right"></i> View </a>
 										</li>
@@ -180,10 +187,14 @@ if (!isset($_SESSION['id'])) {
 								</a>
 							
 							</li>
-
 							<?php endif; ?>	
 						</ul>
 					</div>
+			 
+			 <?php else : ?>
+
+			 
+			 <?php endif ?>
 					<!-- /.navbar-collapse -->
 				</nav>
 			</aside>
@@ -213,7 +224,12 @@ if (!isset($_SESSION['id'])) {
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 								<div class="profile_img">
 									<span class="prfil-img">
-										<img class="img-thumbnail avatar" src="images/default.jpg" alt="" height="40px" width="60px"> </span>
+									<?php if($_SESSION['role'] == 'admin') : ?>
+										<img class="img-thumbnail avatar" src="./images/boy.png" alt="" height="40px" width="60px"> </span>
+									<?php else : ?>
+										<img class="img-thumbnail avatar" src="./images/default.jpg" alt="" height="40px" width="60px"> </span>
+
+										<?php endif ?>
 									<div class="user-name">
 										<p><?php echo $_SESSION['fname']." ".$_SESSION['lname']; ?></p>
 										<span><?php echo $_SESSION['role']; ?></span>
@@ -227,6 +243,10 @@ if (!isset($_SESSION['id'])) {
 								<li>
 									<a href="logout.php">
 										<i class="fa fa-sign-out"></i> Logout</a>
+								</li>
+								<li>
+									<a href="update.php">
+										<i class="fa fa-sign-out"></i> Update Profile</a>
 								</li>
 							</ul>
 						</li>

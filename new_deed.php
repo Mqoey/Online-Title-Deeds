@@ -83,7 +83,7 @@ if(isset($_POST['save_user'])) {
 									$query ="SELECT * FROM provinces";
 									$statement = $db->prepare($query);
 									$statement->execute();
-									$count= $statement -> rowCount();
+									$count= $statement->rowCount();
 									$result = $statement->fetchAll();
 
 									foreach($result as $row){

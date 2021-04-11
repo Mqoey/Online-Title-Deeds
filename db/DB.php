@@ -49,6 +49,7 @@ function storeSessions($email)
             $_SESSION["lname"] = $rslt[0]["lname"];
             $_SESSION["email"] = $rslt[0]["email"];
             $_SESSION['role'] = $rslt[0]["role"];
+            $_SESSION['is_active'] = $rslt[0]["is_active"];
         } else {
             die("fail");
         }
