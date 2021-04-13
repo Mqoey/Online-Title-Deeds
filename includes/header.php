@@ -123,7 +123,7 @@ if (!isset($_SESSION['id'])) {
 									</li>
 								</ul>
 							</li>
-							<li class="treeview">
+							<!-- <li class="treeview">
 								<a href="#">
 									<i class="fa fa-globe"></i>
 									<span>Provinces</span>
@@ -144,7 +144,7 @@ if (!isset($_SESSION['id'])) {
 										?>
 									</li>
 								</ul>
-							</li>
+							</li> -->
 								<li class="treeview">
 									<a href="#">
 										<i class="fa fa-users"></i>

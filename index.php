@@ -41,7 +41,7 @@ try {
 					</div>
 				</div>
 			</div>
-			<div class="col-md-6 widget widget1">
+			<!-- <div class="col-md-6 widget widget1">
 				<div class="r3_counter_box">
 					<i class="pull-left fa fa-globe user2 icon-rounded"></i>
 					<div class="stats">
@@ -51,7 +51,7 @@ try {
 						<span>Provinces</span>
 					</div>
 				</div>
-			</div>
+			</div> -->
 
 			<div class="clearfix"> </div>
 		</div>
@@ -117,7 +117,7 @@ try {
 <?php else: ?>
 	<div id="page-wrapper">
 	<div class="main-page">
-		<div class="col_6">
+		<!-- <div class="col_6">
 			<div class="col-md-6 widget widget1">
 				<div class="r3_counter_box">
 					<i class="pull-left fa fa-globe user2 icon-rounded"></i>
@@ -131,7 +131,7 @@ try {
 			</div>
 
 			<div class="clearfix"> </div>
-		</div>
+		</div> -->
 
 		<div class="row-one widgettable">
 			<div class="col-md-12 content-top-2 card">
