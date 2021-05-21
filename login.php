@@ -1,5 +1,6 @@
 <?php
 require "db/DB.php";
+
 if(isset($_SESSION['id'])){
 	header("Location:index.php");
 }
@@ -31,7 +32,7 @@ if(isset($_POST["submit"])){
 <meta name="keywords" content="Glance Design Dashboard Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-
+<link rel="icon" type="image/x-icon" href="./images/favicon.ico"/>
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 

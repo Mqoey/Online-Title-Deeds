@@ -10,7 +10,7 @@ if(isset($_POST['save_user'])) {
 	$gender = $_POST["gender"];
 	$role = $_POST["role"];
 	$is_active = 1;
-	$password = "Default01";
+	$password = "12345678";
 
 	$user_exist = employee_exist($email);
 	if($user_exist["status"] == 'ok'){
@@ -65,7 +65,7 @@ if(isset($_POST['save_user'])) {
                               <label for="gender"><h4>Role</h4></label>
                               <select class="form-control" name="role">
 								  <option value="admin">admin</option>
-								  <option value="employee">employee</option>
+								  <option value="client">client</option>
 								</select>
 						</div>
                       </div> 

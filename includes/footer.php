@@ -54,6 +54,12 @@
         "targets": 8
       }]
     });
+    $('#all_deeds').DataTable({
+      "columnDefs": [{
+        "searchable": false,
+        "targets": 7
+      }]
+    });
     $('#all_users_by_p').DataTable({
       "columnDefs": [{
         "searchable": false,
@@ -64,6 +70,12 @@
       "columnDefs": [{
         "searchable": false,
         "targets": 7
+      }]
+    });
+    $('#all_info').DataTable({
+      "columnDefs": [{
+        "searchable": false,
+        "targets": 4
       }]
     });
     $('#all_data').DataTable({

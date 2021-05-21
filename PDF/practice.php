@@ -3,10 +3,7 @@ date_default_timezone_set("Africa/Harare");
 require '../db/DB.php';
 require 'fpdf/fpdf.php';
 
-//getting notification
-$column = array('id', 'id_no', 'firstname', 'lastname', 'DOB', 'gender', 'department', 'province_id', 'district', 'branch', 'cell');
-
-$query = "SELECT id, id_no, firstname, lastname, DOB, gender, department, province_id, district, branch, cell FROM people";
+$query = "SELECT * FROM tbl_deeds";
 $statement = $db->prepare($query);
 $statement->execute();
 $count = $statement->rowCount();
@@ -74,51 +71,53 @@ class PDF extends FPDF
 		$this->SetTextColor(0, 0, 0);
 		$this->SetY(-15);
 		//Arial italic 8
-		$this->SetFont('Arial', 'BI', 9);
+		$this->SetFont('Arial', 'BI', 11);
 		//Page number
 		$date = date('D jS M Y');
 		$this->SetX(15);
-		$this->Cell(0, 10, 'Member Information PDF Printed on : ' . $date, 0, 0, 'C');
+		$this->Cell(0, 10, 'Title Deeds Information PDF Printed on : ' . $date, 0, 0, 'C');
 		$this->Cell(0, 10, 'Page ' . $this->PageNo() . ' of {nb}', 0, 0, 'R');
 	}
 	function headerTable()
 	{
-		$this->SetFont('Arial', 'B', 12);
-		$this->Cell(30, 10, 'Id', 1, 0, 'C');
-		$this->Cell(30, 10, 'Name', 1, 0, 'C');
-		$this->Cell(30, 10, 'Surname', 1, 0, 'C');
-		$this->Cell(30, 10, 'Gender', 1, 0, 'C');
-		$this->Cell(30, 10, 'Wing', 1, 0, 'C');
+		$this->SetFont('Arial', 'B', 9);
+		$this->Cell(30, 10, 'Deed Id', 1, 0, 'C');
+		$this->Cell(30, 10, 'Property Owner', 1, 0, 'C');
+		$this->Cell(30, 10, 'Email', 1, 0, 'C');
+		$this->Cell(30, 10, 'Id Number', 1, 0, 'C');
+		$this->Cell(30, 10, 'Phone', 1, 0, 'C');
+		$this->Cell(30, 10, 'Address', 1, 0, 'C');
+		$this->Cell(30, 10, 'Property Location', 1, 0, 'C');
 		$this->Cell(30, 10, 'Province', 1, 0, 'C');
-		$this->Cell(30, 10, 'District', 1, 0, 'C');
-		$this->Cell(30, 10, 'Branch', 1, 0, 'C');
-		$this->Cell(30, 10, 'Cell', 1, 0, 'C');
+		$this->Cell(30, 10, 'Status', 1, 0, 'C');
 		$this->ln();
 	}
 	function viewTable($db)
 	{
-		$query = "SELECT id, id_no, firstname, lastname, DOB, gender, department, province_id, district, branch, cell FROM people";
+		$query = "SELECT * FROM tbl_deeds";
 		$statement = $db->prepare($query);
 		$statement->execute();
 		$count = $statement->rowCount();
 		$result = $statement->fetchAll();
 
 		foreach ($result as $row) {
-			$this->SetFont('Times', '', 12);
-			$this->Cell(30, 10, $row['id_no'], 1, 0, 'L');
-			$this->Cell(30, 10, $row['firstname'], 1, 0, 'L');
-			$this->Cell(30, 10, $row['lastname'], 1, 0, 'L');
-			$this->Cell(30, 10, $row['gender'], 1, 0, 'L');
-			$this->Cell(30, 10, $row['department'], 1, 0, 'L');
-			$this->Cell(30, 10, get_province($db,$row['province_id']), 1, 0, 'L');
-			$this->Cell(30, 10, $row['district'], 1, 0, 'L');
-			$this->Cell(30, 10, $row['branch'], 1, 0, 'L');
-			$this->Cell(30, 10, $row['cell'], 1, 0, 'L');
+			$this->SetFont('Times', '', 9);
+			$this->Cell(30, 10, $row['deed_number'], 1, 0, 'L');
+			$this->Cell(30, 10, $row['first_name'], 1, 0, 'L');
+			$this->Cell(30, 10, $row['email'], 1, 0, 'L');
+			$this->Cell(30, 10, $row['id_number'], 1, 0, 'L');
+			$this->Cell(30, 10, $row['phone'], 1, 0, 'L');
+			$this->Cell(30, 10, $row['address'], 1, 0, 'L');
+			$this->Cell(30, 10, $row['location'], 1, 0, 'L');
+			$this->Cell(30, 10, $row['province'], 1, 0, 'L');
+			if($row['status']==1){
+				$this->Cell(30, 10, 'Sold', 1, 0, 'L');
+			}else{
+				$this->Cell(30, 10, 'Not Sold', 1, 0, 'L');
+			} 
 			$this->ln();
 		}
-	
 	}
-	
 }
 function get_province($db,$pid){
 	$query2 = "SELECT * FROM provinces where province_id=$pid";
@@ -146,6 +145,6 @@ $pdf->viewTable($db);
 $pdf->Ln();
 
 
-$pdf->Output('../files/member_report_' . date('Y-m-d H-i') .'.pdf', 'F');
+$pdf->Output('../files/title_deeds_report_' . date('Y-m-d H-i') .'.pdf', 'F');
 
 header('Location:../index.php?msg=W64yfegw6643hg63t46');

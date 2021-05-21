@@ -58,7 +58,6 @@ function storeSessions($email)
     }
 }
 
-
 //function to check if the user is logged
 function isLogggedIn()
 {
@@ -74,7 +73,7 @@ function logout()
 }
 
 //Function to register a new user
-function create_user($firstname,$lastname,$id_number,$department,$date_of_birth,$gender,$district,$branch,$cell,$province_id,$position, $position_for)
+function create_user($firstname, $lastname, $id_number, $department, $date_of_birth, $gender, $district, $branch, $cell, $province_id, $position, $position_for)
 {
     $id = rand(10111111, 10999999);
     //$date_of_birth = date('Y-m-d');
@@ -339,5 +338,58 @@ function forgot_password($email){
         $result["status"] = $ex->getMessage();
     }
     return $result;
+}
 
+//Function to register a new title deed
+function create_deed($first_name, $email, $id_number, $phone, $address, $province, $status, $property)
+{
+    // $id = rand(10111111, 10999999);
+    //$date_of_birth = date('Y-m-d');
+
+    global $db;
+    try {
+
+        
+         $stmt = $db->prepare("INSERT INTO tbl_deeds (deed_number, first_name, email, phone, address, province, id_number, status, property) VALUES(?,?,?,?,?,?,?,?,?)");
+        $stmt->execute(array(NULL,$first_name,$email,$phone,$address,$province,$id_number, $status, $property));
+        $counter = $stmt->rowCount();
+        $result["status"] = "ok";
+    } catch (Exception $ex) {
+        $result["status"] = $ex->getMessage();
+    }
+
+    return $result;
+}
+
+
+
+//Function to register a new title deed
+function create_info($info)
+{
+    global $db;
+    try {
+         $stmt = $db->prepare("INSERT INTO tbl_info (id,info) VALUES(?,?)");
+        $stmt->execute(array(NULL,$info));
+        $counter = $stmt->rowCount();
+        $result["status"] = "ok";
+    } catch (Exception $ex) {
+        $result["status"] = $ex->getMessage();
+    }
+
+    return $result;
+}
+
+function create_report($info)
+{
+    global $db;
+    try {
+         $stmt = $db->prepare("INSERT INTO tbl_report (id,info) VALUES(?,?)");
+        $stmt->execute(array(NULL,$info));
+        $counter = $stmt->rowCount();
+        $result["status"] = "ok";
+    } catch (Exception $ex) {
+        $result["status"] = $ex->getMessage();
+    }
+
+    return $result;
 }

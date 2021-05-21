@@ -3,32 +3,18 @@ require "db/DB.php";
 if(isset($_SESSION['id'])){
 	header("Location:forgot_password.php");
 }
-//Login function ***Uses a login function in db/DB.php***
-// if(isset($_POST["submit"])){
-//     $email  = $_POST["email"];
-	
-//     if(!empty($email)){        
-//        $forgot_password = forgot_password($email);
-//        if($forgot_password["status"]=="ok"){
-// 			header("Location:send_email.php"); 
-// 	   }else{
-// 			die("Email or password incorrect.");
-//        }
-//     }
-//     else{
-//         die("Email or Password can not be empty");
-//     }
-// }
+
 ?>
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Welcome| Forgot Password Page</title>
+<title>Welcome| Forgot Password</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Glance Design Dashboard Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<link rel="icon" type="image/x-icon" href="./images/favicon.ico"/>
 
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />

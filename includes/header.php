@@ -1,20 +1,19 @@
 <?php require "db/DB.php"; ?>
 <?php
 if (!isset($_SESSION['id'])) {
-	header("Location:login.php");
+    header("Location:login.php");
 }
 ?>
 <!DOCTYPE HTML>
 <html>
 
 <head>
-	<title>Online Deeds| Home</title>
+<title>Online Title Deeds</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="keywords" content="" />
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
 	<link rel="icon" type="image/x-icon" href="./images/favicon.ico"/>
-	<!-- <link href="img/logo.png" rel="icon"> -->
 	<!-- Bootstrap Core CSS -->
 	<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 
@@ -82,7 +81,7 @@ if (!isset($_SESSION['id'])) {
 			<aside class="sidebar-left">
 				<nav class="navbar navbar-inverse">
 
-				<?php if($_SESSION['is_active'] == 1) : ?>
+				<?php if ($_SESSION['is_active'] == 1) : ?>
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".collapse" aria-expanded="false">
 							<span class="sr-only">Toggle navigation</span>
@@ -93,7 +92,7 @@ if (!isset($_SESSION['id'])) {
 						
 						<h1>
 							<a class="navbar-brand" href="index.php">
-								<img style="align:center" width="20dp" length="20dp" src="./images/favicon.ico"/> Online Deeds
+								Online Deeds
 							</a>
 						</h1>
 					</div>
@@ -109,46 +108,25 @@ if (!isset($_SESSION['id'])) {
 								</a>
 							</li>
 							
-						<?php if($_SESSION['role'] == 'admin') : ?>
-								<li class="treeview">
+						<?php if ($_SESSION['role'] == 'admin') : ?>
+
+							<li class="treeview">
 								<a href="#">
 									<i class="fa fa-user"></i>
-									<span>Members</span>
+									<span>Deed Management</span>
 									<i class="fa fa-angle-left pull-right"></i>
 								</a>
 								<ul class="treeview-menu">
 									<li>
-										<a href="new.php"><i class="fa fa-angle-right"></i> New </a>
-										<a href="users.php"><i class="fa fa-angle-right"></i> View </a>
+										<a href="new_deed.php"><i class="fa fa-angle-right"></i> New </a>
+										<a href="deeds.php"><i class="fa fa-angle-right"></i> View </a>
 									</li>
 								</ul>
 							</li>
-							<!-- <li class="treeview">
-								<a href="#">
-									<i class="fa fa-globe"></i>
-									<span>Provinces</span>
-									<i class="fa fa-angle-left pull-right"></i>
-								</a>
-								<ul class="treeview-menu">
-									<li>
-										<?php
-											$query ="SELECT * FROM provinces";
-											$statement = $db->prepare($query);
-											$statement->execute();
-											$count= $statement -> rowCount();
-											$result = $statement->fetchAll();
-
-											foreach($result as $row){
-												echo "<a href='province.php?id=".$row['province_id']."'><i class='fa fa-angle-right'></i> ".$row['province_name']."</a>";
-											}
-										?>
-									</li>
-								</ul>
-							</li> -->
 								<li class="treeview">
 									<a href="#">
 										<i class="fa fa-users"></i>
-										<span>Clients</span>
+										<span>User Management</span>
 										<i class="fa fa-angle-left pull-right"></i>
 									</a>
 									<ul class="treeview-menu">
@@ -160,30 +138,25 @@ if (!isset($_SESSION['id'])) {
 									</ul>
 								</li>
 								<li class="treeview">
-								<a href="#">
-									<i class="fa fa-user"></i>
-									<span>Deeds</span>
-									<i class="fa fa-angle-left pull-right"></i>
-								</a>
-								<ul class="treeview-menu">
-									<li>
-										<a href="new_deed.php"><i class="fa fa-angle-right"></i> New </a>
-										<a href="deeds.php"><i class="fa fa-angle-right"></i> View </a>
-									</li>
-								</ul>
-							</li>
-							<li class="treeview">
 								<a href="stats.php">
 									<i class="fa fa-area-chart"></i>
-									<span>Statistics</span>
+									<span>Informative Page</span>
 								</a>
 							</li>
 							
 							<?php else : ?>
 								<li class="treeview">
-								<a href="stats.php">
+								<a href="report.php">
 									<i class="fa fa-area-chart"></i>
-									<span>Statistics</span>
+									<span>Report Fraud</span>
+								</a>
+							
+							</li>
+
+							<li class="treeview">
+								<a href="payments.php">
+									<i class="fa fa-area-chart"></i>
+									<span>Santuatry Payments</span>
 								</a>
 							
 							</li>
@@ -224,7 +197,7 @@ if (!isset($_SESSION['id'])) {
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 								<div class="profile_img">
 									<span class="prfil-img">
-									<?php if($_SESSION['role'] == 'admin') : ?>
+									<?php if ($_SESSION['role'] == 'admin') : ?>
 										<img class="img-thumbnail avatar" src="./images/boy.png" alt="" height="40px" width="60px"> </span>
 									<?php else : ?>
 										<img class="img-thumbnail avatar" src="./images/default.jpg" alt="" height="40px" width="60px"> </span>

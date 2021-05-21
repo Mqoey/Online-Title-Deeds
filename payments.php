@@ -8,11 +8,11 @@ if(isset($_POST['save_info'])) {
 	$info = $_POST["info"];
 
 	if($info==""){
-		$reso = "Info cannot be null";
+		$reso = "Report cannot be null";
 
 	}else{
-		$create_user=create_info($info); 
-		$reso = "Info Added";
+		$create_user=create_report($info); 
+		$reso = "Reported";
 	}
 }
 
@@ -26,21 +26,26 @@ if(isset($_POST['save_info'])) {
 		<div class="col-sm-12">
 			<div class="tab-content">
 				<div class="row  widgettable">
+				<h1>Payment</h1>
 					<form class="form" action="" method="POST" name="save_info">
-						<div class="col-sm-6 col-md-6 col-lg-6 content-top-2 card">
-							<div class="agileinfo-cdr">
-								<div class="form-group">
-									<label for="Province">
-										<h4>Inform the Public</h4>
-									</label>
-										<br><br>
-									<input class="form-control" name="info"/>
-									<br>
+						<div class="col-sm-3 col-md-3 col-lg-3 content-top-2 card">
+
+						<div class="form-group">
 								</div>
+								Amount
+								<br>
+								<input type="number"/>
+							<div class="agileinfo-cdr">
+								
+								<select>
+								<option>Ecocash</option>
+								<option>Visa</option>
+								<option>Master Card</option>
+								<option>Bank</option>
+								<option>One Money</option>
+								</select>
 							</div>
-						</div>
-						<div class="col-sm-4 col-md-4 col-lg-4">
-							<button type="submit" class="btn btn-lg btn-info" name="save_info">Send</button>
+						<br>
 						</div>
 
 						<div class="form-group">
@@ -56,8 +61,13 @@ if(isset($_POST['save_info'])) {
                           </div>
                     </div>
 					</form>
-				</div>
+
+									</div>
 			</div>
+
+			<div class="col-sm-4 col-md-4 col-lg-4">
+							<button type="submit" class="btn btn-lg btn-info" name="save_info">Pay</button>
+						</div>
 		</div>
     </div>
 	</div>

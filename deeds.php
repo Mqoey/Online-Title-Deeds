@@ -1,6 +1,6 @@
 <?php include "includes/header.php"; ?>
 <?php
-$query ="SELECT * FROM people";
+$query ="SELECT * FROM tbl_deeds";
 $statement = $db->prepare($query);
 $statement->execute();
 $count= $statement -> rowCount();
@@ -11,46 +11,63 @@ $result = $statement->fetchAll();
         <div class="col-md-12">
             <div class="panel panel-success">
                 <div class="panel panel-heading">
-                    <h3>All Users</h3>
+                    <h3>Title Deeds Management</h3>
                 </div>
                 <div class="panel panel-body">
-                    <table id="all_users" class="table table-striped table-bordered" >
+                    <table id="all_deeds" class="table table-striped table-bordered" >
                         <thead>
                             <tr>
+                                <th>Deed Number</th>
+                                <th>Name</th>
+                                <th>Email</th>
                                 <th>Id Number</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Wing</th>
+                                <th>Phone</th>
+                                <th>Address</th>
                                 <th>Province</th>
-                                <th>District</th>
-                                <th>Branch</th>
-                                <th>Cell</th>
+                                <th>Status</th>
                                 <th style:align="center">Action</th>
                             </tr>
                         </thead>
                         <tbody class="search_into">
                         <?php foreach($result as $row) : ?>
                             <tr>
-                                <td><?php echo $row['id_no'] ?></td>
-                                <td><?php echo $row['firstname'] ?></td>
-                                <td><?php echo $row['lastname'] ?></td>
-                                <td><?php echo $row['department'] ?></td>
-                                <?php
-                                    $query ="SELECT * FROM provinces where province_id=".$row['province_id'];
+                            <?php
+                                    $query ="SELECT * FROM tbl_deeds where deed_number=".$row['deed_number'];
                                     $statement = $db->prepare($query);
                                     $statement->execute();
                                     $count= $statement -> rowCount();
                                     $result = $statement->fetchAll();
 
-                                    $province=$result[0]['province_name'];
+                                     $deed_number=$result[0]['deed_number'];
                                 ?>
-                                <td><?php echo $province ?></td>
+                                <td><?php echo $deed_number ?></td>
+                                <td><?php echo $row['first_name'] ?></td>
+                                <td><?php echo $row['email'] ?></td>
+                                <td><?php echo $row['id_number'] ?></td>
+                                <td><?php echo $row['phone'] ?></td>
+                                <td><?php echo $row['address'] ?></td>
+                                <td><?php echo $row['province'] ?></td>
+                                
+                                <?php 
+                                        if($row['status']==1){
+                                            echo "<td><a href='' class='badge badge-success'>Sold</a></td>";
+                                        }else{
+                                            echo "<td><a href='' class='badge badge-warning'>Not Sold</a></td>";
+                                        } 
+                                    ?>
 
-                                <td><?php echo $row['district'] ?></td>
-                                <td><?php echo $row['branch'] ?></td>
-                                <td><?php echo $row['cell'] ?></td>
-                                <td><a href="edit_user.php?id=<?php echo $row['id'] ?>" class="badge badge-primary">edit</a><a href="delete_user.php?id=<?php echo $row['id'] ?>" class="badge badge-danger">delete</a>
-                                </td>
+<td>
+                                        <a href="edit_emp.php?deed_number=<?php echo $row['deed_number'] ?>" class="badge badge-primary">Edit</a>
+                                        <a href="delete_emp.php?deed_number=<?php echo $row['deed_number'] ?>" class="badge badge-danger">Delete</a>
+                                        <?php
+                                            if($row['status']==1){
+                                                echo '<a href="activate_emp.php?deed_number='.$row['deed_number'].'" class="badge badge-warning">To not sold</a>';
+                                            }else{
+                                                echo '<a href="activate_emp.php?deed_number='.$row['deed_number'].'" class="badge badge-success">To sold</a>';
+                                            } 
+                                            
+                                        ?>
+                                    </td>
                             </tr>
                         <?php endforeach; ?>         
                         </tbody>

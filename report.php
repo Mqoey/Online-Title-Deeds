@@ -8,11 +8,11 @@ if(isset($_POST['save_info'])) {
 	$info = $_POST["info"];
 
 	if($info==""){
-		$reso = "Info cannot be null";
+		$reso = "Report cannot be null";
 
 	}else{
-		$create_user=create_info($info); 
-		$reso = "Info Added";
+		$create_user=create_report($info); 
+		$reso = "Reported";
 	}
 }
 
@@ -31,7 +31,7 @@ if(isset($_POST['save_info'])) {
 							<div class="agileinfo-cdr">
 								<div class="form-group">
 									<label for="Province">
-										<h4>Inform the Public</h4>
+										<h4>Report Fraud to Admin</h4>
 									</label>
 										<br><br>
 									<input class="form-control" name="info"/>
@@ -40,7 +40,7 @@ if(isset($_POST['save_info'])) {
 							</div>
 						</div>
 						<div class="col-sm-4 col-md-4 col-lg-4">
-							<button type="submit" class="btn btn-lg btn-info" name="save_info">Send</button>
+							<button type="submit" class="btn btn-lg btn-info" name="save_info">Report</button>
 						</div>
 
 						<div class="form-group">

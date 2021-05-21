@@ -11,7 +11,7 @@ $result = $statement->fetchAll();
         <div class="col-md-12">
             <div class="panel panel-success">
                 <div class="panel panel-heading">
-                    <h3>All Employees</h3>
+                    <h3>All Users</h3>
                 </div>
                 <div class="panel panel-body">
                     <table id="all_emps" class="table table-striped table-bordered" >

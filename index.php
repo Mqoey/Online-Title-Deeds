@@ -5,19 +5,19 @@ if(isset($_GET['msg'])){
 	echo "<script>alert('PDF Created successfully !');</script>";
 }
 try {
-	$query = "SELECT * FROM employees";
+
+	$query1 = "SELECT * FROM employees";
+	$statement1 = $db->prepare($query1);
+	$statement1->execute();
+	$count1 = $statement1->rowCount();
+	$result1 = $statement1->fetchAll();
+
+	$query = "SELECT * FROM tbl_deeds";
 	$statement = $db->prepare($query);
 	$statement->execute();
 	$count = $statement->rowCount();
 	$result = $statement->fetchAll();
 
-	$query = "SELECT * FROM people";
-	$statement = $db->prepare($query);
-	$statement->execute();
-	$result = $statement->fetchAll();
-	if ($count > 0) { } else {
-		$result["status"] = "fail";
-	}
 } catch (Exception $ex) {
 	$result["status"] = $ex->getMessage();
 }
@@ -35,23 +35,23 @@ try {
 					<i class="pull-left fa fa-users icon-rounded"></i>
 					<div class="stats">
 						<h5 id="amount_deposited">
-							<strong><?php echo $count; ?> </strong>
+							<strong><?php echo $count1; ?> </strong>
 						</h5>
-						<span>Clients Registered</span>
+						<span>Users</span>
 					</div>
 				</div>
 			</div>
-			<!-- <div class="col-md-6 widget widget1">
+			<div class="col-md-6 widget widget1">
 				<div class="r3_counter_box">
 					<i class="pull-left fa fa-globe user2 icon-rounded"></i>
 					<div class="stats">
 						<h5 id="generated_revenue">
-							<strong>10</strong>
+							<strong><?php echo $count; ?></strong>
 						</h5>
-						<span>Provinces</span>
+						<span>Title Deeds</span>
 					</div>
 				</div>
-			</div> -->
+			</div>
 
 			<div class="clearfix"> </div>
 		</div>
@@ -60,53 +60,61 @@ try {
 			<div class="col-md-12 content-top-2 card">
 				<div class="agileinfo-cdr">
 					<div class="card-header">
-						<h3>All Members</h3>
+						<h2>All Title Deeds</h2>
+						<br>
 						<a href="pdf/practice.php" class="btn btn-success btn-lg pull-left" >Create PDF</a>
 					</div>
-					<br><br><br>
-					<div style="width: 98%; height: 350px">
-						<table id="all_data" class="table table-striped table-bordered">
-							<thead>
-								<tr>
-									<th>Id Number</th>
-									<th>First Name</th>
-									<th>Last Name</th>
-									<th>Wing</th>
-									<th>Province</th>
-									<th>District</th>
-									<th>Branch</th>
-									<th>Cell</th>
-									<th align="center">Action</th>
-								</tr>
-							</thead>
-							<tbody class="search_into">
-								<?php foreach ($result as $row) : ?>
-									<tr>
-										<td><?php echo $row['id_no'] ?></td>
-										<td><?php echo $row['firstname'] ?></td>
-										<td><?php echo $row['lastname'] ?></td>
-										<td><?php echo $row['department'] ?></td>
-										<?php
-											$query = "SELECT * FROM provinces where province_id=" . $row['province_id'];
-											$statement = $db->prepare($query);
-											$statement->execute();
-											$count = $statement->rowCount();
-											$result = $statement->fetchAll();
+					<br><br>
+					<div class="panel panel-body">
+                    <table id="all_deeds" class="table table-striped table-bordered" >
+                        <thead>
+                            <tr>
+                                <th>Deed Id</th>
+                                <th>Property Owner</th>
+                                <th>Email</th>
+                                <th>Id Number</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+								<th>Property Location</th>
+                                <th>Province</th>
+                                <th style:align="center">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="search_into">
+                        <?php foreach($result as $row) : ?>
+                            <tr>
+                            <?php
+                                    $query ="SELECT * FROM tbl_deeds where deed_number=".$row['deed_number'];
+                                    $statement = $db->prepare($query);
+                                    $statement->execute();
+                                    $count= $statement -> rowCount();
+                                    $result = $statement->fetchAll();
 
-											$province = $result[0]['province_name'];
-											?>
-										<td><?php echo $province ?></td>
+                                     $deed_number=$result[0]['deed_number'];
+                                ?>
+                                <td><?php echo $deed_number ?></td>
+                                <td><?php echo $row['first_name'] ?></td>
+                                <td><?php echo $row['email'] ?></td>
+                                <td><?php echo $row['id_number'] ?></td>
+                                <td><?php echo $row['phone'] ?></td>
+                                <td><?php echo $row['address'] ?></td>
+								<td><?php echo $row['property'] ?></td>
+                                <td><?php echo $row['province'] ?></td>
+                                
+								<?php 
+                                        if($row['status']==1){
+                                            echo "<td><a href='' class='badge badge-success'>Sold</a></td>";
+                                        }else{
+                                            echo "<td><a href='' class='badge badge-warning'>Not Sold</a></td>";
+                                        } 
+                                    ?>
 
-										<td><?php echo $row['district'] ?></td>
-										<td><?php echo $row['branch'] ?></td>
-										<td><?php echo $row['cell'] ?></td>
-										<td><a href="edit_user.php?id=<?php echo $row['id'] ?>" class="badge badge-primary">edit</a><a href="delete_user.php?id=<?php echo $row['id'] ?>" class="badge badge-danger">delete</a></td>
-									</tr>
-								<?php endforeach; ?>
-							</tbody>
-						</table>
-
-					</div>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>         
+                        </tbody>
+                    </table>
+                </div>
 				</div>
 			</div>
 			<div class="clearfix"> </div>
@@ -117,22 +125,6 @@ try {
 <?php else: ?>
 	<div id="page-wrapper">
 	<div class="main-page">
-		<!-- <div class="col_6">
-			<div class="col-md-6 widget widget1">
-				<div class="r3_counter_box">
-					<i class="pull-left fa fa-globe user2 icon-rounded"></i>
-					<div class="stats">
-						<h5 id="generated_revenue">
-							<strong>10</strong>
-						</h5>
-						<span>Provinces</span>
-					</div>
-				</div>
-			</div>
-
-			<div class="clearfix"> </div>
-		</div> -->
-
 		<div class="row-one widgettable">
 			<div class="col-md-12 content-top-2 card">
 				<div class="agileinfo-cdr">
