@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 06, 2019 at 12:57 PM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.1
+-- Generation Time: Apr 15, 2021 at 05:06 AM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 7.3.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -44,7 +43,8 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`id`, `password`, `fname`, `lname`, `gender`, `email`, `is_active`, `role`) VALUES
-(10514726, '$2y$10$Gi5AUsI02PknZ9zIgz7qNeOlFDMmkgl.JSWCDVnkICFdebEYv/pCe', 'John', 'Doe', 'Male', 'jdoe@gmail.com', 1, 'admin');
+(10514726, '$2y$10$jI64CHs3.9ADcHWrFKFnTuvnu5566L.V/jaZdQyr1NtltsClIcMGe', 'John', 'Doe', 'Male', 'mndlovu@axissol.com', 1, 'admin'),
+(10821517, '$2y$10$jI64CHs3.9ADcHWrFKFnTuvnu5566L.V/jaZdQyr1NtltsClIcMGe', 'John', 'Nyama', 'Male', 'jnyama@gmail.com', 1, 'client');
 
 -- --------------------------------------------------------
 
@@ -73,7 +73,8 @@ CREATE TABLE `people` (
 --
 
 INSERT INTO `people` (`id`, `id_no`, `firstname`, `lastname`, `DOB`, `gender`, `department`, `province_id`, `district`, `branch`, `cell`, `position`, `position_for`) VALUES
-(10153830, '63455657', 'John', 'Doe', '0000-00-00', 'Male', 'youth', 1, 'dist1', 'branch1', 'cellC', '', '');
+(10716906, '08-2026116w14', 'Mqondisi', 'Ndlovu', '2021-04-11', 'Female', 'Men', 2, 'dist2', 'branch2', 'cellC', 'Chairman', 'None'),
+(36674848, '08-2026116w14', 'Mqondisi', 'Ndlovu', '2021-04-11', 'Female', 'Men', 2, 'dist2', 'branch2', 'cellC', 'Chairman', 'None');
 
 -- --------------------------------------------------------
 
@@ -101,6 +102,41 @@ INSERT INTO `provinces` (`province_id`, `province_name`) VALUES
 (8, 'Mat North'),
 (9, 'Mat South');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_deeds`
+--
+
+CREATE TABLE `tbl_deeds` (
+  `deed_number` int(11) NOT NULL,
+  `first_name` varchar(450) NOT NULL,
+  `email` varchar(450) DEFAULT NULL,
+  `phone` varchar(450) DEFAULT NULL,
+  `address` varchar(450) DEFAULT NULL,
+  `province` varchar(450) NOT NULL,
+  `id_number` varchar(450) NOT NULL,
+  `property` varchar(501) NOT NULL,
+  `status` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_deeds`
+--
+
+INSERT INTO `tbl_deeds` (`deed_number`, `first_name`, `email`, `phone`, `address`, `province`, `id_number`, `property`, `status`) VALUES
+(1, 'Mqondisi Ndlovu', 'mndlovu', '0772783880', 'avondale', 'Harare', '082026114w14', '', 0),
+(2, 'mh', 'fdb', 'sbsrb', 'wgg', 'sssssg', 'wwwwwt', '', 0),
+(3, 'Mqondisi Ndlovu', 'mndlovu@axissol.com', '0772783880', '14 Arundale Road', '1', 'mndlovu@axissol.com', '', 0),
+(4, 'Mqondisi Ndlovu', 'mndlovu@axissol.com', '0772783880', '14 Arundale Road', '1', 'mndlovu@axissol.com', '', 0),
+(5, 'Mqondisi Ndlovu', 'mndlovu@axissol.com', '0772783880', '14 Arundale Road', '1', 'mndlovu@axissol.com', '', 0),
+(6, 'Mqondisi Ndlovu', 'mndlovu@axissol.com', '0772783880', '14 Arundale Road', '1', 'mndlovu@axissol.com', '', 1),
+(7, 'Mqondisi Ndlovu', 'mndlovu@axissol.com', '0772783880', '14 Arundale Road', 'Harare', 'mndlovu@axissol.com', '', 1),
+(8, 'Mqondisi Ndlovu', 'mndlovu@axissol.com', '0772783880', '14 Arundale Road', 'Harare', 'mndlovu@axissol.com', 'hjh', 1),
+(9, 'Mike', 'blessing@kamifatech.co.zw', '', '7 Ringate Road Rhodesville', 'Harare', 'blessing@kamifatech.co.zw', 'byo', 1),
+(10, 'Theo', 'rohim.systems@gmail.com', '0998877666', '17810 Emhlangeni', 'Harare', 'rohim.systems@gmail.com', 'Mutare', 1),
+(11, 'Mike', 'mndlovu@axissol.com', '0772783880', '14 Arundale Road', 'Harare', 'mndlovu@axissol.com', 'Mutare', 1);
+
 --
 -- Indexes for dumped tables
 --
@@ -124,6 +160,12 @@ ALTER TABLE `provinces`
   ADD PRIMARY KEY (`province_id`);
 
 --
+-- Indexes for table `tbl_deeds`
+--
+ALTER TABLE `tbl_deeds`
+  ADD PRIMARY KEY (`deed_number`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -132,6 +174,12 @@ ALTER TABLE `provinces`
 --
 ALTER TABLE `provinces`
   MODIFY `province_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `tbl_deeds`
+--
+ALTER TABLE `tbl_deeds`
+  MODIFY `deed_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
